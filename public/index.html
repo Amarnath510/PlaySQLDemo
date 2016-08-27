@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>Student CRUD - Java + Play</title>
+
+	<script type="text/javascript" src="assets/javascripts/jquery.min.js"></script>
+	<script type="text/javascript" src="assets/javascripts/angular.min.js"></script>
+	<script type="text/javascript" src="assets/javascripts/angular-route.min.js"></script>
+	<script type="text/javascript" src="assets/javascripts/controller.js"></script>
+	
+	<link rel="stylesheet" href="assets/stylesheets/bootstrap.min.css" />
+	<link rel="stylesheet" href="assets/stylesheets/main.css" />
+</head>
+<body ng-app="myApp" ng-controller="MyCtrl">
+	<div class="container">
+		<div class="row center jumbotron">
+			<div class="col-sm-12">
+				<h2>Java + Play + AngularJS - CRUD Application</h2>
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-sm-12 center">
+				<form class="form-horizontal" ng-submit="create()">
+					<div class="form-group">
+						<label for="inputName" class="control-label col-xs-2">Name</label>
+						<div class="col-xs-10">
+							<input type="text" 
+									class="form-control" 
+									id="inputName" 
+									name="student_name" 
+									ng-model="student_name"
+									placeholder="Name">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmail" class="control-label col-xs-2">Email</label>
+						<div class="col-xs-10">
+							<input type="email" 
+									class="form-control" 
+									id="inputEmail" 
+									name="student_email"
+									ng-model="student_email"
+									placeholder="Email">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputAge" class="control-label col-xs-2">Age</label>
+						<div class="col-xs-10">
+							<input type="text" 
+									class="form-control" 
+									id="inputAge" 
+									name="student_age"
+									ng-model="student_age"
+									placeholder="Age">
+						</div>
+					</div>
+					<div class="form-group center">
+						<div class="col-xs-12">
+							<button type="submit" class="btn btn-primary">Create</button>
+							<button type="button" class="btn btn-warning" ng-click="clear()">Clear</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-xs-12 center">
+				<p style="color: red">* Please fill all the fields.</p>
+			</div>
+		</div>
+		
+		<br>
+		
+		<div class="row" ng-show="showUpdate">
+			<div class="col-sm-12 center">
+				<form class="form-horizontal" ng-submit="update()">
+					<div class="form-group">
+						<label for="inputName" class="control-label col-xs-2">Name</label>
+						<div class="col-xs-10">
+							<input type="text" 
+									class="form-control" 
+									id="updateName" 
+									name="update_name" 
+									ng-model="updateStudent.name"
+									placeholder="Name">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmail" class="control-label col-xs-2">Email</label>
+						<div class="col-xs-10">
+							<input type="email" 
+									class="form-control" 
+									id="updateEmail" 
+									name="update_email"
+									ng-model="updateStudent.email"
+									placeholder="Email">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputAge" class="control-label col-xs-2">Age</label>
+						<div class="col-xs-10">
+							<input type="text" 
+									class="form-control" 
+									id="updateAge" 
+									name="update_age"
+									ng-model="updateStudent.age"
+									placeholder="Age">
+						</div>
+					</div>
+					<div class="form-group center">
+						<div class="col-xs-12">
+							<button type="submit" class="btn btn-primary">Update</button>
+							<button type="button" class="btn btn-warning" ng-click="cancelUpdate()">Cancel</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-12">
+				<div class='panel panel-default'>
+					<table class='table table-bordered' style='font-size: 13px;'>
+						<thead style='background-color: #C2C2C2'>
+							<tr>
+								<th>Name</th>
+								<th>Email</th>
+								<th>Age</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="stu in students track by $index">
+						        <td>{{stu.name}}</td>
+						        <td>{{stu.email}}</td>
+						        <td>{{stu.age}}</td>
+						        <td>
+						        	<button class="btn btn-danger" ng-click="remove(stu)">Delete</button>
+						        	<button class="btn btn-primary" ng-click="edit(stu)">Edit</button>
+						        </td>
+						    </tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
